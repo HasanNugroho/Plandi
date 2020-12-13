@@ -1,0 +1,39 @@
+/* Swipper */
+.swiper-checkout {
+    width: 420px;
+    height: 420px;
+}
+
+.swiper-slide {
+    background-position: center;
+    background-size: cover;
+}
+
+/* Swipper End */
+.img-produk {
+    max-width: 400px;
+    height: auto;
+}
+
+.btn-whatsapp {
+    background-color: #5ECEB3;
+    color: #FFFFFF !important;
+    border-radius: 65px;
+}
+.judul-deskripsi{
+    background-color: rgba(206, 151, 94, 0.15);
+    border-radius: 5px;
+    margin: 2rem 0;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+.detail {
+    margin: 2rem 0;
+}
+
+@media(max-width:540px) {
+    .swiper-checkout {
+        width: 300px;
+        height: 300px;
+    }
+}

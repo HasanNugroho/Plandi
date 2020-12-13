@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('title', 'Plandi')
+@section('css', 'home.css')
 @section('content')
 
 {{-- Whatsapp --}}
@@ -31,7 +32,7 @@
 <div class="container">
     <div class="produk">
         <div class="kategori">
-            <div class="d-flex">
+            <div class="d-flex align-items-center">
                 <a href="" class="btn btn-md text-medium text5 btn-kategori"
                     style="background-color: #ce985e50;">Pot</a>
                 <a href="" class="btn btn-md text-medium text5 btn-kategori">Media Tanam</a>
@@ -107,11 +108,54 @@
 </div>
 {{-- end produk --}}
 {{-- Testimony --}}
-    <div class="testimoni">
-        <div class="text-center">
-            <p class="text6 text-primary">Testimonials</p>
-            <p class="text2 text-primary">Apa Kata Mereka?</p>
+<div class="testimoni">
+    <div class="container-sm text-center">
+        <p class="text6 text-primary">Testimonials</p>
+        <p class="text2 text-primary">Apa Kata Mereka?</p>
+        <div class="swiper-container swiper-home">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body" style="border-radius: 10px;">
+                            <span class="iconify mb-2" data-icon="mdi:comment-quote" data-inline="false" style="color: #939393;" data-width="25" data-height="25"></span>
+                            <p class="text5 mb-4">Suka deh sama kelasnya, cara penyampaiannya asik parah dongg. Rasanya sampe pengen meninggal! recomended deh, gratis lagi!</p>
+                            <div class="garis mb-2 mb-1"></div>
+                            <p class="text3 text-primary">Tholib</p>
+                            <img src="/image/man.png" class="img-testi">
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body" style="border-radius: 10px;">
+                            <span class="iconify mb-2" data-icon="mdi:comment-quote" data-inline="false" style="color: #939393;" data-width="25" data-height="25"></span>
+                            <p class="text5 mb-4">Suka deh sama kelasnya, cara penyampaiannya asik parah dongg. Rasanya sampe pengen meninggal! recomended deh, gratis lagi!</p>
+                            <div class="garis mb-2"></div>
+                            <p class="text3 text-primary mb-1">Tholib</p>
+                            <img src="/image/man.png" class="img-testi">
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body" style="border-radius: 10px;">
+                            <span class="iconify mb-2" data-icon="mdi:comment-quote" data-inline="false" style="color: #939393;" data-width="25" data-height="25"></span>
+                            <p class="text5 mb-4">Suka deh sama kelasnya, cara penyampaiannya asik parah dongg. Rasanya sampe pengen meninggal! recomended deh, gratis lagi!</p>
+                            <div class="garis mb-2"></div>
+                            <p class="text3 text-primary mb-1">Tholib</p>
+                            <img src="/image/man.png" class="img-testi">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+            <!-- Add Arrows -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
         </div>
     </div>
+</div>
 {{-- Testimony end --}}
+
 @endsection

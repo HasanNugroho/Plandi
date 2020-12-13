@@ -1,0 +1,134 @@
+.btn-whatsapp {
+    background-color: #5ECEB3;
+    color: #FFFFFF !important;
+    border-radius: 65px;
+}
+
+.whatsapp {
+    bottom: 2rem;
+    right: 2rem;
+    position: fixed;
+    z-index: 2;
+}
+@media (max-width:960px) {
+    .card-img-top{
+        height: 220px !important;
+    }
+}
+
+@media(max-width:720px) {
+    .hidden{
+        display: inline;
+    }
+    .not-hidden{
+        display: inline;
+    }
+    .card-img-top{
+        height: 180px !important;
+    }
+}
+/* Swipper */
+.swiper-container {
+    width: 100%;
+    height: 100%;
+    padding: 0 3rem 4em 3rem;
+    margin-top: 4rem;
+    margin-bottom: 0rem;
+  }
+  .swiper-slide {
+    text-align: center;
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+  }
+/* Swipper end */
+
+
+/* HERO */
+.hero {
+    background-color: #CE975E;
+    height: 100vh;
+}
+
+/* .hero-content{
+    margin-top: 65px;
+} */
+.center-hero {
+    margin: 0;
+    position: absolute;
+    top: 55%;
+    transform: translate(0, -50%);
+}
+
+.btn-see-product {
+    box-shadow: 3px 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.btn-see-product:hover {
+    background-color: #ac7a46 !important;
+    color: #ffffff !important;
+}
+
+.img-hero {
+    width: 80%;
+    height: auto;
+}
+
+/* HERO END */
+/* Product */
+.produk {
+    margin: 8rem 0;
+}
+
+.btn-kategori {
+    padding: .2rem .5rem;
+    border-radius: 5px;
+}
+
+/* .gambar-produk{
+    height: 250px;
+    max-width: 100%;
+} */
+.card-img-top {
+    object-fit: cover;
+    height: 280px;
+    max-width: 100%;
+}
+
+.katalog {
+    margin: 1.5rem 0;
+}
+
+.see-all .iconify:hover {
+    color: #FFFFFF !important;
+}
+/* Product End */
+/* testimoni */
+.testimoni{
+    background-color: #F9F2EB;
+    padding: 4rem 0;
+}
+.img-testi{
+    max-width: 12rem;
+    max-height: 12rem;
+    object-fit: cover;
+    border-radius: 100px;
+}
+.garis{
+    background: #E5E5E5;
+    border-radius: 2px;
+    width: 40px;
+    height: 4px;
+    margin: 0 auto;
+}
+/* testimoni end */
