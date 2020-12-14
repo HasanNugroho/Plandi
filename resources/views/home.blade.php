@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title', 'Plandi')
-@section('css', 'home.css')
+@section('css', 'home')
 @section('content')
 
 {{-- Whatsapp --}}

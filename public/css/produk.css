@@ -1,0 +1,29 @@
+.search-result{
+    margin-bottom: 2.5rem;
+    padding-top: 2.5rem;
+}
+.img-produk{
+    width: 100%;
+    height: 280px;
+    padding: .5rem;
+}
+@media (max-width:960px) {
+    .img-produk{
+    height: 180px;
+    }
+}
+@media (max-width:720px) {
+    .img-produk{
+    height: 150px;
+    }
+}
+@media (max-width:575px) {
+    .img-produk{
+    height: 280px;
+    }
+}
+@media (max-width:415px) {
+    .img-produk{
+        height: 210px;
+    }
+}
