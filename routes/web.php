@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,4 +23,12 @@ Route::get('/checkout', function () {
 });
 Route::get('/produk', function () {
     return view('produk');
+});
+
+Auth::routes();
+
+Route::get('/dashboard', [HomeController::class, 'index'])->name('home')->middleware(['auth']);
+
+Route::group(['middleware' => ['auth'], 'prefix' => '/dashboard'], function () {
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 });
