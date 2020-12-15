@@ -250,8 +250,22 @@ return [
             'text'        => 'Produk',
             'url'         => 'dashboard/produk',
             'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
+            // 'label'       => 4,
             'label_color' => 'success',
+            'submenu'     => [
+                [
+                    'text'  =>  'Lihat Produk',
+                    'url'   =>  '/dashboard/produk',
+                ],
+                [
+                    'text'  =>  'Tambah Produk',
+                    'url'   =>  '/dashboard/produk/tambah',
+                ],
+                [
+                    'text'  =>  'Tambah Kategori',
+                    'url'   =>  '/dashboard/kategori',
+                ],
+            ]
         ],
         ['header' => 'account_settings'],
         [

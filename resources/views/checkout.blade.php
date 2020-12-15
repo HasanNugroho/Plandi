@@ -9,10 +9,8 @@
                 <div class="detail">
                     <div class="swiper-container swiper-checkout">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide" class="img-produk" style="background-image:url(image/man.png)">
-                            </div>
-                            <div class="swiper-slide" class="img-produk" style="background-image:url(image/hero.svg)">
-                            </div>
+                            <div class="swiper-slide" class="img-produk" style="background-image:url(image/man.png)"></div>
+                            <div class="swiper-slide" class="img-produk" style="background-image:url(image/hero.svg)"></div>
                         </div>
                         <!-- Add Arrows -->
                         <div class="swiper-button-next"></div>

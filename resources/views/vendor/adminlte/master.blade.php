@@ -23,6 +23,8 @@
     @yield('adminlte_css_pre')
 
     {{-- Base Stylesheets --}}
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     @if(!config('adminlte.enabled_laravel_mix'))
         <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}">
         <link rel="stylesheet" href="{{ asset('vendor/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
@@ -79,6 +81,7 @@
     @yield('body')
 
     {{-- Base Scripts --}}
+    <script src="bootstrap/js/bootstrap.min.js"></script>
     @if(!config('adminlte.enabled_laravel_mix'))
         <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
         <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -97,7 +100,7 @@
         @if(app()->version() >= 7)
             @livewireScripts
         @else
-            <livewire:scripts />
+            <livewire:scripts/>
         @endif
     @endif
 
