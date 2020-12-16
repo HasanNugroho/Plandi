@@ -49,6 +49,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => '/dashboard/produk'], functi
 });
 // Kategori //
 Route::group(['middleware' => ['auth'], 'prefix' => '/dashboard/kategori'], function () {
-    route::get('', [kategoriController::class, 'index'])->name('kategori');
-    // route::resource('/store', [kategoriController::class, 'store'])->name('add.kategori');
+    route::get('/', [kategoriController::class, 'index'])->name('kategori');
+    // route::get('/', [kategoriController::class, 'show'])->name('show.kategori');
+    route::post('/store', [kategoriController::class, 'store'])->name('add.kategori');
+    route::get('/delete/{id}', [kategoriController::class, 'delete'])->name('hapus.kategori');
 });

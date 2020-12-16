@@ -14,7 +14,7 @@ class ProdukController extends Controller
     // 
     public function index()
     {
-        $produk = produk::all();
+        $produk = produk::get();
         return view('admin.produk', compact('produk'));
         // return json_encode(array('data'=>$userData));
     }
@@ -113,19 +113,15 @@ class ProdukController extends Controller
 
         $request->validate($data);
         $targetItem = produk::where('slug', $request->slug)->first();
-        // dd($targetItem);
         if($request->hasfile('foto')){
             foreach(json_decode($targetItem->foto) as $hapus){
                 Storage::delete($hapus);
             }
-            // dd($request->foto);
             if($request->hasfile('foto')){
                 foreach($request->file('foto') as $image)
                 {
                     $imgname = Storage::putFile('public/produk',  $image->path());
-                    // dd($imgname);
                     $update_foto[] = $imgname;
-                    // dd($update);
                     $update['foto'] = json_encode($update_foto);
                 }
             }
@@ -139,7 +135,6 @@ class ProdukController extends Controller
         $update['diameter_dalam'] = $request->diameter_dalam;
         $update['diskripsi'] = $request->diskripsi;
 
-        // dd($update);
         produk::where('slug', $request->slug)->update($update);
         return redirect('/dashboard/produk');
     }
