@@ -3,14 +3,28 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Request as request1;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\produk;
+use App\Models\kategori;
 
 class ProdukController extends Controller
 {
     // 
-    // ketampilan produk
+    // Menampilkan produk ke frontedn
+    // 
+    public function front()
+    {
+        // dd(request1::get('kategori'));
+        $produk = produk::all();
+        if(request1::get('kategori')){
+            $produk = produk::where('kategori', request1::get('kategori'))->get();
+        }
+        return $produk;
+    }
+    // 
+    // Menampilkan produk
     // 
     public function index()
     {
@@ -23,25 +37,31 @@ class ProdukController extends Controller
     // 
     public function tambah()
     {
-        return view('admin.tambah-produk');
+        $kategori = kategori::all();
+        return view('admin.tambah-produk', compact('kategori'));
     }
     // 
     // menambah data
     // 
     public function store(Request $request)
     {
+        // dd($request);
         $this->validate($request,[
             'nama_produk' => 'required',
             'harga' => 'required',
+            'kategori' => 'required',
             'berat_barang' => 'required',
             'berat_volume' => 'required',
             'diameter_luar' => 'required',
             'diameter_dalam' => 'required',
             'panjang_tali' => 'required',
             'diskripsi' => 'required',
+            'foto_utama' => 'required',
             'foto' => 'required',
             'foto.*' => 'required'
         ]);
+        // dd($request);
+
 
         $data = [];
         if($request->hasfile('foto'))
@@ -52,12 +72,17 @@ class ProdukController extends Controller
                 $data[] = $imgname;  
             }
         }
-        
+        if($request->hasfile('foto_utama'))
+        {
+            $fotoutama = Storage::putFile('public/produk',  $request->foto_utama->path());
+        }
         produk::create([
             'foto' => json_encode($data),
             'nama_produk' => $request->nama_produk,
-            'slug' => Str::random(10),
+            'slug' => Str::slug($request->nama_produk),
+            'foto_utama' => $fotoutama,
             'harga' => $request->harga,
+            'kategori' => $request->kategori,
             'berat_barang' => $request->berat_barang,
             'berat_volume' => $request->berat_volume,
             'diameter_luar' => $request->diameter_luar,
@@ -73,6 +98,7 @@ class ProdukController extends Controller
     public function delete($slug)
     {
         $delete = produk::where('slug', $slug)->first();
+        Storage::delete($delete->foto_utama);
         foreach(json_decode($delete->foto) as $hapus){
             Storage::delete($hapus);
         }
@@ -86,7 +112,8 @@ class ProdukController extends Controller
     public function edit($slug)
     {
         $edit = produk::where('slug', $slug)->first();
-        return view('admin.edit-produk', compact('edit'));
+        $kategori = kategori::all();
+        return view('admin.edit-produk', compact('edit', 'kategori'));
     }
     // 
     // update
@@ -105,14 +132,34 @@ class ProdukController extends Controller
             'diskripsi' => 'required',
         ];
 
+        // vlidasi kategori
+        if($request->kategori){
+            $data['kategori'] = 'required';
+        }
         // validasi foto
         if($request->file('foto')){
             $data['foto'] = 'required';
             $data['foto.*'] = 'required';
         }
+        // validasi foto utama
+        if($request->file('foto_utama')){
+            $data['foto_utama'] = 'required';
+        }
 
         $request->validate($data);
+        // update kategori
+        if($request->kategori){
+            $update['kategori'] = $request->kategori;
+        }
+        // update foto utama
         $targetItem = produk::where('slug', $request->slug)->first();
+        if($request->hasfile('foto_utama')){
+            Storage::delete($targetItem->foto_utama);
+
+            $fotoutama = Storage::putFile('public/produk',  $request->foto_utama->path());
+            $update['foto_utama'] = $fotoutama;
+        }
+        // update multiple foto
         if($request->hasfile('foto')){
             foreach(json_decode($targetItem->foto) as $hapus){
                 Storage::delete($hapus);

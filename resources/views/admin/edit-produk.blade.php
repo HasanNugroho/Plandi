@@ -38,6 +38,21 @@
             <label for="tali" class="form-label">Panjang tali</label>
             <input type="text" name="panjang_tali" class="form-control" id="tali" value="{{$edit->panjang_tali}}">
         </div>
+        <div class="col-md-6 mb-2">
+            <label for="tali" class="form-label">Kategori</label>
+            <select class="form-select" aria-label="Default select example" name="kategori">
+                <option selected>{{$edit->kategori}}</option>
+                @foreach ($kategori as $kategori)
+                    <option value="{{$kategori->kategori}}">{{$kategori->kategori}}</option>
+                @endforeach
+              </select>
+        </div>
+        <div class="col-md-6 mb-2">
+            <label for="tali" class="form-label">Foto Utama produk</label>
+            <div class="input-group control-group">
+                <input type="file" name="foto_utama" class="form-control" value="{{$edit->foto_utama}}">
+            </div>
+        </div>
         <div class="col-md-6">
             <label for="tali" class="form-label">Foto produk</label>
             <div class="input-group control-group increment">
@@ -48,7 +63,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="clone visually-hidden">
                 <div class="control-group input-group" style="margin-top:10px">
                     <input type="file" name="foto[]" value="{{$edit->foto}}" class="form-control" multiple>

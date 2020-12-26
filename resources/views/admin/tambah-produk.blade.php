@@ -8,35 +8,50 @@
 <div class="container">
     <form class="row" action="{{route('tambah.produk')}}" method="POST" enctype="multipart/form-data">
         {{csrf_field()}}
-        <div class="col-md-6">
+        <div class="col-md-6 mb-2">
             <label for="inputEmail4" class="form-label">Nama Barang</label>
             <input type="text" name="nama_produk" class="form-control" id="inputEmail4" placeholder="pot">
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 mb-2">
             <label for="inputEmail4" class="form-label">Harga</label>
             <input type="text" name="harga" class="form-control" id="inputEmail4" placeholder="50.000">
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 mb-2">
             <label for="bb" class="form-label">Berat barang</label>
             <input type="text" name="berat_barang" class="form-control" id="bb" placeholder="Dalam satuan gram">
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 mb-2">
             <label for="volume" class="form-label">Berat volume</label>
             <input type="text" name="berat_volume" class="form-control" id="volume" placeholder="Dalam satuan gram">
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 mb-2">
             <label for="luar" class="form-label">Diameter luar</label>
             <input type="text" name="diameter_luar" class="form-control" id="luar" placeholder="Dalam satuan centimeter">
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 mb-2">
             <label for="dalam" class="form-label">Diameter dalam</label>
             <input type="text" name="diameter_dalam" class="form-control" id="dalam" placeholder="Dalam satuan centimeter">
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 mb-2">
             <label for="tali" class="form-label">Panjang tali</label>
             <input type="text" name="panjang_tali" class="form-control" id="tali" placeholder="Dalam satuan centimeter">
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 mb-2">
+            <label for="tali" class="form-label">Kategori</label>
+            <select class="form-select" aria-label="Default select example" name="kategori">
+                <option selected>Pilih kategori</option>
+                @foreach ($kategori as $kategori)
+                    <option value="{{$kategori->kategori}}">{{$kategori->kategori}}</option>
+                @endforeach
+              </select>
+        </div>
+        <div class="col-md-6 mb-2">
+            <label for="tali" class="form-label">Foto Utama produk</label>
+            <div class="input-group control-group">
+                <input type="file" name="foto_utama" class="form-control">
+            </div>
+        </div>
+        <div class="col-md-6 mb-2">
             <label for="tali" class="form-label">Foto produk</label>
             <div class="input-group control-group increment">
                 <input type="file" name="foto[]" class="form-control" multiple>
@@ -46,7 +61,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 mb-2">
             <div class="clone visually-hidden">
                 <div class="control-group input-group" style="margin-top:10px">
                     <input type="file" name="foto[]" class="form-control" multiple>
@@ -77,7 +92,7 @@
 @stop
 
 @section('css')
-<link rel="stylesheet" href="/css/admin_custom.css">
+{{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
 <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
 
 @stop

@@ -70,7 +70,8 @@
     integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 {{-- AJAX --}}
 
-<script>
+{{-- <script>
+    $('#exampleModal').appendTo("body");
     $("#formKategori").submit(function (e) {
         e.preventDefault();
 
@@ -92,10 +93,11 @@
                         response.id + ')}}">Hapus</a></td></tr>');
                     $("#formKategori")[0].reset();
                     $("#exampleModal").modal('hide');
+                    $(".modal").modal('hide');
                 }
             }
         });
     });
 
-</script>
+</script> --}}
 @stop

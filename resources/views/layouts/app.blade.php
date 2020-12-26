@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="swipper/css/swiper-bundle.css">
+    <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('swipper/css/swiper-bundle.css')}}">
     {{-- <link rel="stylesheet" href="swipper/css/swiper-bundle.min.css"> --}}
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" href="css/@yield('css').css">
+    {{-- CSS TAMBAHAN --}}
+
+    @yield('css-custom')
     <title>@yield('title')</title>
 </head>
 <body>
@@ -19,10 +22,9 @@
 
     @include('layouts.footer')
 
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="{{asset('bootstrap/js/bootstrap.min.js')}}"></script>
     <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
-    <script src="swipper/js/swiper-bundle.js"></script>
-    {{-- <script src="swipper/js/swiper-bundle.min.js"></script> --}}
+    <script src="{{asset('swipper/js/swiper-bundle.js')}}"></script>
     <script>
         var swiper = new Swiper('.swiper-home', {
           slidesPerView: 3,

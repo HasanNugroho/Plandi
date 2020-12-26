@@ -255,15 +255,39 @@ return [
             'submenu'     => [
                 [
                     'text'  =>  'Lihat Produk',
+                    'icon_color' => 'cyan',
                     'url'   =>  '/dashboard/produk',
                 ],
                 [
                     'text'  =>  'Tambah Produk',
+                    'icon_color' => 'cyan',
                     'url'   =>  '/dashboard/produk/tambah',
                 ],
                 [
                     'text'  =>  'Tambah Kategori',
+                    'icon_color' => 'cyan',
                     'url'   =>  '/dashboard/kategori',
+                ],
+            ]
+        ],
+        [
+            'text'        => 'Testimony',
+            'url'         => 'dashboard/testimoni',
+            'icon'        => 'far fa-fw fa-file',
+            // 'label'       => 4,
+            'label_color' => 'success',
+        ],
+        [
+            'text'        => 'Manage',
+            'url'         => 'dashboard',
+            'icon'        => 'far fa-fw fa-file',
+            // 'label'       => 4,
+            'label_color' => 'success',
+            'submenu'     => [
+                [
+                    'text'  =>  'Kontak',
+                    'icon_color' => 'cyan',
+                    'url'   =>  '/dashboard/contact',
                 ],
             ]
         ],
@@ -415,11 +439,11 @@ return [
             ],
         ],
         'Sweetalert2' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdn.jsdelivr.net/npm/sweetalert2@8',
                 ],
             ],

@@ -18,7 +18,7 @@ class KategoriController extends Controller
         $data = new kategori();
         $data->kategori = $request->kategori;
         $data->save();
-        return response()->json($data);
+        return redirect()->back();
     }
     public function delete($id)
     {

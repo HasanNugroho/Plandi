@@ -1,6 +1,6 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
     <div class="container">
-        <a class="navbar-brand text-primary d-flex align-items-center" style="font-weight: 600; font-size: 16px;" href="#">Plandis<p style="margin-left: 5px; font-weight: normal; font-size: 14px;">Group</p></a>
+        <a class="navbar-brand text-primary d-flex align-items-center" style="font-weight: 600; font-size: 16px;" href="/">Plandis<p style="margin-left: 5px; font-weight: normal; font-size: 14px;">Group</p></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

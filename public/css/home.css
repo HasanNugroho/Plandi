@@ -129,8 +129,8 @@
     padding: 4rem 0;
 }
 .img-testi{
-    max-width: 12rem;
-    max-height: 12rem;
+    width: 4rem;
+    height: 4rem;
     object-fit: cover;
     border-radius: 100px;
 }

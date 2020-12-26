@@ -21,14 +21,12 @@
         <tr>
           <th scope="row">1</th>
           <td>
-            <?php foreach (json_decode($p->foto) as $f) {  ?>
-              <img src="{{ Storage::url($f)}}" style="width: 100px; height: 100px; margin: 0 .2rem;" alt="">
-            <?php } ?>
+              <img src="{{ Storage::url($p->foto_utama)}}" style="width: 100px; height: 100px; margin: 0 .2rem;" alt="">
           </td>
           <td>{{$p->nama_produk}}</td>
           <td>Rp {{$p->harga}}</td>
           <td>
-              <a href="{{route('edit.produk', $p->slug)}}" class="btn btn-sm btn-primary">Edit</a>
+              <a href="{{route('edit.produk', $p->slug)}}" class="btn btn-sm btn-warning">Edit</a>
               <a href="{{route('hapus.produk', $p->slug)}}" class="btn btn-sm btn-danger">Hapus</a>
           </td>
         </tr>
