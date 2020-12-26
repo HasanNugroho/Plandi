@@ -279,9 +279,8 @@ return [
         ],
         [
             'text'        => 'Manage',
-            'url'         => 'dashboard',
+            'url'         => 'dashboard/contact',
             'icon'        => 'far fa-fw fa-file',
-            // 'label'       => 4,
             'label_color' => 'success',
             'submenu'     => [
                 [

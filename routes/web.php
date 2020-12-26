@@ -24,6 +24,7 @@ use App\Http\Controllers\kategoriController;
 Route::get('/', [FrontController::class, 'index'])->name('home_produk');
 Route::get('/checkout/{slug}', [FrontController::class, 'checkout'])->name('checkout');
 Route::get('/produk', [FrontController::class, 'produk'])->name('produk.front');
+Route::get('/search', [ProdukController::class, 'search'])->name('search');
 // Route::get('/kategori', [ProdukController::class, 'front'])->name('home');
 
 

@@ -11,7 +11,7 @@
 
 @section('content')
 <div class="container">
-    <table class="table">
+    <table class="table" id="testi-table">
         <thead class="table-light">
             <tr>
                 <th>Foto</th>
@@ -27,7 +27,7 @@
                     <img src="{{ Storage::url($testi->foto)}}" style="width: 100px; height: 100px; margin: 0 .2rem;" alt="">
                 </td>
                 <td>{{$testi->nama}}</td>
-                <td>{{$testi->komentar}}s</td>
+                <td>{{$testi->komentar}}</td>
                 <td><a class="btn btn-warning btn-sm btn-edit" data-id="{{$testi->id}}" href="#">Edit</a>
                     <a class="btn btn-danger btn-sm btn-delete" data-id="{{$testi->id}}" href="#">Hapus</a> 
                 </td>
@@ -122,6 +122,7 @@
         var output = document.getElementById('preview');
         var file = document.getElementById('labelimg').innerHTML = file.files[0].name
     };
+
 </script>
 <script>
         $('.btn-edit').on('click', function () {
@@ -141,7 +142,8 @@
         })
     })
 
-    $('.btn-update').on('click', function () {
+    $('.btn-update').on('click', function (e) {
+        e.preventDefault();
         let id = $('#form-edit').find('#id_data').val()
         let formData = $('#form-edit').serialize()
         // console.log(id)
@@ -151,10 +153,10 @@
             method: "POST",
             data: formData,
             success: function (data) {
-                console.log(success)
-                // $('#modal-edit').find('.modal-body').html(data)
-                // $('#modal-edit').modal('hide')
-                // window.location.assign('/')
+                // console.log(data)
+                $('#modal-edit').find('.modal-body').html(data)
+                $('#modal-edit').modal('hide')
+                window.location.assign('/dashboard/testimoni')
             },
             error: function (err) {
                 console.log(err.responseJSON)

@@ -1,15 +1,15 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
     <div class="container">
-        <a class="navbar-brand text-primary d-flex align-items-center" style="font-weight: 600; font-size: 16px;" href="/">Plandis<p style="margin-left: 5px; font-weight: normal; font-size: 14px;">Group</p></a>
+        <a class="navbar-brand text-primary d-flex align-items-center" style="font-weight: 600; font-size: 16px;"
+            href="/">Plandis<p style="margin-left: 5px; font-weight: normal; font-size: 14px;">Group</p></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link text-dark text5 active" aria-current="page" href="#">Beranda</a>
+                    <a class="nav-link text-dark text5 active" aria-current="page" href="/">Beranda</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-dark text5" href="#" id="navbarDropdown" role="button"
@@ -29,6 +29,18 @@
                 </li>
             </ul>
         </div>
-        
+        <div class="wrap">
+            <form action="{{route('search')}}" method="get" enctype="multipart/form-data">
+                @csrf
+                <div class="search">
+                    <input type="text" class="searchTerm" placeholder="Cari barangmu" name="search">
+                    <button type="submit" class="searchButton">
+                        <span class="iconify" data-icon="bx:bx-search" data-inline="false"
+                            style="color: #BD7E4A;"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+
     </div>
 </nav>

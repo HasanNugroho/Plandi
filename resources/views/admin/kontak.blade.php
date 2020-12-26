@@ -79,7 +79,8 @@
             }
         })
     })
-    $('.btn-update').on('click', function () {
+    $('.btn-update').on('click', function (e) {
+        e.preventDefault();
         let id = $('#form-edit').find('#data_id').val()
         let formData = $('#form-edit').serialize()
         // console.log(id)
@@ -89,10 +90,10 @@
             method: "POST",
             data: formData,
             success: function (data) {
-                console.log(success)
-                // $('#modal-edit').find('.modal-body').html(data)
+                // console.log(success)
+                $('#modal-edit').find('.modal-body').html(data)
                 $('#modal-edit').modal('hide')
-                // window.location.assign('/')
+                window.location.assign('/dashboard/contact')
             },
             error: function (err) {
                 console.log(err.responseJSON)

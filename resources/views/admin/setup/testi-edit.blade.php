@@ -5,7 +5,7 @@
             id="preview">
     </div>
     <div class="custom-file mt-3">
-        <input id="foto" class="custom-file-input" type="file" name="foto"
+        <input id="gambar" class="custom-file-input" type="file" name="foto"
             onchange="loadFile(event)">
         <label for="my-input" class="custom-file-label" id="labelimg">Image</label>
     </div>
@@ -19,3 +19,4 @@
     <label for="komentar">Komentar</label>
         <textarea class="form-control" id="komentar" name="komentar" value="{{$data->komentar}}">{{$data->komentar}}</textarea>
 </div>
+

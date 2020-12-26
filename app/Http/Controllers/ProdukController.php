@@ -24,6 +24,21 @@ class ProdukController extends Controller
         return $produk;
     }
     // 
+    // Search
+    // 
+    public function search()
+    {
+        $produk = produk::search(request1::get('search'))->get();
+        $key = request1::get('search');
+        $search_count = $produk->count();
+        $jenis = 'search_result';
+        if($produk->count() > 0){
+            return view('product', compact('produk', 'key', 'search_count', 'jenis'));
+        }else{
+            return back()->with(['danger' => 'Search Results for ' .$key. ' not available']);
+        }
+    }
+    // 
     // Menampilkan produk
     // 
     public function index()
