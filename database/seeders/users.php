@@ -19,6 +19,7 @@ class users extends Seeder
             [
                 'name' => 'admin',
                 'email' => 'admin@admin.com',
+                'role' => 'superadmin',
                 'password' => Hash::make('12345678'),
             ]
         ]);

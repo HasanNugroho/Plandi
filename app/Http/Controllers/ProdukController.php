@@ -32,8 +32,10 @@ class ProdukController extends Controller
         $key = request1::get('search');
         $search_count = $produk->count();
         $jenis = 'search_result';
+        $rekomendasi = produk::where('slug','!=',$produk[0]->slug)->latest()->limit(4)->get();
+        $count_rekomendasi = $rekomendasi->count();
         if($produk->count() > 0){
-            return view('product', compact('produk', 'key', 'search_count', 'jenis'));
+            return view('product', compact('produk', 'key', 'search_count', 'jenis', 'rekomendasi', 'count_rekomendasi'));
         }else{
             return back()->with(['danger' => 'Search Results for ' .$key. ' not available']);
         }
@@ -43,17 +45,10 @@ class ProdukController extends Controller
     // 
     public function index()
     {
-        $produk = produk::get();
-        return view('admin.produk', compact('produk'));
-        // return json_encode(array('data'=>$userData));
-    }
-    // 
-    // Ke tampilan tambah produk
-    // 
-    public function tambah()
-    {
         $kategori = kategori::all();
-        return view('admin.tambah-produk', compact('kategori'));
+        $produk = produk::get();
+        return view('admin.produk', compact('produk', 'kategori'));
+        // return json_encode(array('data'=>$userData));
     }
     // 
     // menambah data

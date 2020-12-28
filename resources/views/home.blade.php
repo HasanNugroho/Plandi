@@ -5,7 +5,7 @@
 
 {{-- Whatsapp --}}
 <div class="whatsapp">
-    <a class=" text-right btn btn-md text5 btn-whatsapp" href="#"><span class="iconify" data-icon="bx:bxl-whatsapp"
+    <a class=" text-right btn btn-md text5 btn-whatsapp" href="https://wa.me/{{$whatsapp->kontak}}"><span class="iconify" data-icon="bx:bxl-whatsapp"
             data-inline="false" data-width="23" data-height="23"></span>Whatsapp</a>
 </div>
 {{-- Whatsapp end --}}

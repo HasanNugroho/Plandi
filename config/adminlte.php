@@ -1,5 +1,4 @@
 <?php
-
 return [
 
     /*
@@ -45,12 +44,12 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
+    'logo' => 'Plandi',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'AdminLTE',
+    'logo_img_alt' => 'PLANDI',
 
     /*
     |--------------------------------------------------------------------------
@@ -237,7 +236,7 @@ return [
             'topnav' => true,
         ],
         [
-            'text' => 'blog',
+            'text' => 'Blog',
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
@@ -249,111 +248,60 @@ return [
         [
             'text'        => 'Produk',
             'url'         => 'dashboard/produk',
-            'icon'        => 'far fa-fw fa-file',
-            // 'label'       => 4,
+            'icon'        => 'fas fa-fw fa-shopping-basket',
             'label_color' => 'success',
-            'submenu'     => [
-                [
-                    'text'  =>  'Lihat Produk',
-                    'icon_color' => 'cyan',
-                    'url'   =>  '/dashboard/produk',
-                ],
-                [
-                    'text'  =>  'Tambah Produk',
-                    'icon_color' => 'cyan',
-                    'url'   =>  '/dashboard/produk/tambah',
-                ],
-                [
-                    'text'  =>  'Tambah Kategori',
-                    'icon_color' => 'cyan',
-                    'url'   =>  '/dashboard/kategori',
-                ],
-            ]
+            // 'submenu'     => [
+            //     [
+            //         'text'  =>  'Lihat Produk',
+            //         'icon' => 'fas fa-fw fa-shopping-basket',
+            //         'url'   =>  '/dashboard/produk',
+            //     ],
+            //     [
+            //         'text'  =>  'Tambah Produk',
+            //         'icon' => 'fas fa-fw fa-plus-circle',
+            //         'url'   =>  '/dashboard/produk/tambah',
+            //     ],
+            //     [
+            //         'text'  =>  'Tambah Kategori',
+            //         'icon_color' => 'cyan',
+            //         'icon' => 'fas fa-fw fa-plus-circle',
+            //         'url'   =>  '/dashboard/kategori',
+            //     ],
+            // ]
+        ],
+        [
+            'text'  =>  'Kategori',
+            'icon' => 'fas fa-fw fa-tags',
+            'url'   =>  '/dashboard/kategori',
         ],
         [
             'text'        => 'Testimony',
             'url'         => 'dashboard/testimoni',
-            'icon'        => 'far fa-fw fa-file',
-            // 'label'       => 4,
-            'label_color' => 'success',
+            'icon'        => 'fas fa-fw fa-comments',
         ],
         [
             'text'        => 'Manage',
             'url'         => 'dashboard/contact',
-            'icon'        => 'far fa-fw fa-file',
+            'icon'        => 'fas fa-fw fa-tasks',
             'label_color' => 'success',
             'submenu'     => [
                 [
                     'text'  =>  'Kontak',
-                    'icon_color' => 'cyan',
+                    'icon'        => 'fas fa-fw fa-address-book',
                     'url'   =>  '/dashboard/contact',
                 ],
             ]
         ],
         ['header' => 'account_settings'],
         [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
+            'text' => 'Profile',
+            'url'  => 'dashboard/profile',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
+            'text' => 'Admin Manage',
+            'url'  => 'dashboard/admin/manage',
             'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-            ],
-        ],
-        ['header' => 'labels'],
-        [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
         ],
     ],
 

@@ -17,14 +17,23 @@ class FrontController extends Controller
         $produk = $pc->front();
         $testi = $tc->testimony();
         $kategori = kategori::all();
-        return view('home', compact('produk', 'kategori', 'testi'));
+        $whatsapp = contact::where('jenis_kontak', 'whatsapp')->first();
+        return view('home', compact('produk', 'kategori', 'testi', 'whatsapp'));
     }
     public function checkout($slug)
     {
+        $checkout = produk::where('slug', $slug)->first();
         $whatsapp = contact::where('jenis_kontak', 'whatsapp')->first();
         $sms = contact::where('jenis_kontak', 'sms')->first();
         $telephone = contact::where('jenis_kontak', 'telephone')->first();
-        $checkout = produk::where('slug', $slug)->first();
+                #update add one visitor to table
+        if (!session()->get('visitsNews-'.$slug)) {
+            session()->put('visitsNews-'.$slug, true);
+            $checkout->update([
+                'visitor' => $checkout->visitor + 1
+            ]);
+        }
+
         return view('checkout', compact('checkout', 'whatsapp', 'sms', 'telephone'));
     }
     public function produk()

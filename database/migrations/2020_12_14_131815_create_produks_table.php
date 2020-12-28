@@ -19,7 +19,7 @@ class CreateProduksTable extends Migration
             $table->text('foto_utama');
             $table->string('nama_produk');
             $table->string('slug');
-            $table->string('visitor')->nullable();
+            $table->string('visitor')->default(0);
             $table->string('kategori')->nullable();
             $table->string('berat_barang');
             $table->string('berat_volume');

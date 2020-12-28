@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TestimonyController;
 use App\Http\Controllers\ManageController;
 use App\Http\Controllers\kategoriController;
@@ -21,23 +22,36 @@ use App\Http\Controllers\kategoriController;
 */
 
 // Home Route
-Route::get('/', [FrontController::class, 'index'])->name('home_produk');
-Route::get('/checkout/{slug}', [FrontController::class, 'checkout'])->name('checkout');
-Route::get('/produk', [FrontController::class, 'produk'])->name('produk.front');
-Route::get('/search', [ProdukController::class, 'search'])->name('search');
+Route::group(['middleware' => ['VisitorCount'], 'prefix' => '/'], function() {
+    Route::get('', [FrontController::class, 'index'])->name('home_produk');
+    Route::get('checkout/{slug}', [FrontController::class, 'checkout'])->name('checkout');
+    Route::get('produk', [FrontController::class, 'produk'])->name('produk.front');
+    Route::get('search', [ProdukController::class, 'search'])->name('search');
+});
 // Route::get('/kategori', [ProdukController::class, 'front'])->name('home');
 
-
-Route::get('/checkout', function () {
-    return view('checkout');
-});
 
 Auth::routes();
 
 // Dashboard //
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboardstart')->middleware(['auth', 'VisitorCount']); //general
+// Route::get('/', [DashboardController::class, 'index'])->name('home');
+
+// Profile setting //
 Route::group(['middleware' => ['auth'], 'prefix' => '/dashboard'], function () {
-    Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+});
+
+// Khusus Superadmin
+Route::group(['middleware' => ['auth', 'Superadmin'], 'prefix' => '/dashboard/admin/'], function () {
+    Route::get('manage', [ProfileController::class, 'manage'])->name('admin.manage');
+
+});
+
+// Admin profile //
+Route::group(['middleware' => ['auth'], 'prefix' => '/dashboard/profile'], function () {
+    Route::get('', [ProfileController::class, 'index'])->name('profile');
+    Route::post('/update', [ProfileController::class, 'update'])->name('profile.update');
 });
 
 // Produk //

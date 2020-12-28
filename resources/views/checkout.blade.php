@@ -30,7 +30,7 @@
                     <p class="text2">{{$checkout->nama_produk}}</p>
                     <div class="d-flex">
                         {{-- <p class="text5 text-medium">Terjual 25 produk</p> --}}
-                        <p class="text5 text-medium mt-2">5.000 x dilihat</p>
+                        <p class="text5 text-medium mt-2">{{$checkout->visitor}} x dilihat</p>
                     </div>
                     <div style="background-color: rgba(206, 151, 94, 0.15);padding: 1rem;border-radius: 5px;"
                         class="mt-3 mb-3">
