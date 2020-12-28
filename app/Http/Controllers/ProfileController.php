@@ -41,7 +41,26 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        request()->validate([
+            'name' => 'required',
+            'password' => 'required|min:8|max:255',
+            'email' => 'required',
+            'role' => 'required',
+        ]);
+
+        $data = [
+            'name' => request('name'),
+            'password' => bcrypt(request('password')),
+            'email' => request('email'),
+            'role' => request('role'),
+            'foto' => 'public/asset/profile.jpg',
+        ];
+
+        User::create($data);
+
+        session()->flash('message', "<script>swal('Success','New admin added','success')</script>");
+        return redirect()->back();
     }
 
     /**
@@ -63,7 +82,8 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = User::find($id);
+        return view('admin.setup.user-edit', ['data' => $data]);
     }
 
     /**
@@ -125,9 +145,50 @@ class ProfileController extends Controller
         }
     }
 
+    public function update2(Request $request, $id)
+    {
+        // dd($id);
+        $request->validate([
+            'email' => 'required|email',
+            'name' => 'required'
+        ]);
+
+        $data = [];
+
+        if($request->password){
+            $request->validate([
+                'old_password' => 'required',
+                'password' => 'required'
+            ]);
+
+            $data = [
+                'email' => request('email'),
+                'name' => request('name'),
+                'password' => bcrypt(request('password')),
+            ];
+        }
+        $password = User::where('id', $id)->first();
+        if ($request->password) {
+            if (Hash::check(request('old_password'), $password->password)) {
+                User::where('id', $id)->update($data);
+                session()->flash('message', "<script>swal('Success','Updated profil','success')</script>");
+                return back();
+            } else {
+                session()->flash('message', "<script>swal('Fail','Wrong password','error')</script>");
+                return back();
+            }
+        }else {
+            User::where('id', $id)->update($data);
+
+            session()->flash('message', "<script>swal('Success','Updated profil','success')</script>");
+            return back();
+        }
+    }
+
     public function manage()
     {
-        return view('admin.manage.manage');
+        $user = User::get();
+        return view('admin.manage.manage', compact('user'));
     }
     /**
      * Remove the specified resource from storage.
@@ -135,8 +196,11 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        //
+        $delete = User::where('id', $id)->first();
+            Storage::delete($delete);
+        $delete->delete();
+        return json_encode(array('statusCode'=>200));
     }
 }

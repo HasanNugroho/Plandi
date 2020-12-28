@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 @section('title', 'Kontak')
 @section('content_header')
-<h1>Kontak di Pesanan</h1>
+<div class="text2">Kontak di Pesanan</div>
 @stop
 
 @section('content')

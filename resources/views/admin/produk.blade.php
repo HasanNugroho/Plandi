@@ -2,8 +2,8 @@
 @section('title', 'Produk')
 @section('content_header')
 <div class="d-flex justify-content-between">
-  <h1>Produk</h1>
-  <button type="button" class="btn btn-md btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  <div class="text2">Produk</div>
+  <button type="button" class="text3 btn btn-md btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
     Tambah Produk
   </button>
 </div>
@@ -11,6 +11,7 @@
 
 @section('content')
 <div class="container">
+    <div class="table-responsive">
 <table class="table">
     <thead>
       <tr>
@@ -38,6 +39,7 @@
       @endforeach
     </tbody>
   </table>
+</div>
 </div>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

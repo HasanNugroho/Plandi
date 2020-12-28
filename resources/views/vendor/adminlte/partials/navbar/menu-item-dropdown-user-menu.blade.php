@@ -18,7 +18,7 @@
     {{-- User menu toggler --}}
     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
         @if(config('adminlte.usermenu_image'))
-            <img src="{{ Auth::user()->adminlte_image() }}"
+            <img src="{{ Storage::url(Auth::user()->foto)}}"
                  class="user-image img-circle elevation-2"
                  alt="{{ Auth::user()->name }}">
         @endif
@@ -34,15 +34,15 @@
             <li class="user-header {{ config('adminlte.usermenu_header_class', 'bg-primary') }}
                 @if(!config('adminlte.usermenu_image')) h-auto @endif">
                 @if(config('adminlte.usermenu_image'))
-                    <img src="{{ Auth::user()->adminlte_image() }}"
+                    <img src="{{ Storage::url(Auth::user()->foto)}}"
                          class="img-circle elevation-2"
                          alt="{{ Auth::user()->name }}">
                 @endif
-                <p class="@if(!config('adminlte.usermenu_image')) mt-0 @endif">
+                <p class="text3 @if(!config('adminlte.usermenu_image')) mt-0 @endif">
                     {{ Auth::user()->name }}
-                    @if(config('adminlte.usermenu_desc'))
+                    {{-- @if(config('adminlte.usermenu_desc'))
                         <small>{{ Auth::user()->adminlte_desc() }}</small>
-                    @endif
+                    @endif --}}
                 </p>
             </li>
         @else

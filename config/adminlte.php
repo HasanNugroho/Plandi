@@ -1,4 +1,6 @@
 <?php
+use Illuminate\Support\Facades\Auth;
+
 return [
 
     /*
@@ -13,7 +15,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'Plandi',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -125,7 +127,7 @@ return [
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-dark-primary elevation-4',
+    'classes_sidebar' => 'sidebar-dark-secondary elevation-4',
     'classes_sidebar_nav' => '',
     'classes_topnav' => 'navbar-white navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
@@ -250,24 +252,6 @@ return [
             'url'         => 'dashboard/produk',
             'icon'        => 'fas fa-fw fa-shopping-basket',
             'label_color' => 'success',
-            // 'submenu'     => [
-            //     [
-            //         'text'  =>  'Lihat Produk',
-            //         'icon' => 'fas fa-fw fa-shopping-basket',
-            //         'url'   =>  '/dashboard/produk',
-            //     ],
-            //     [
-            //         'text'  =>  'Tambah Produk',
-            //         'icon' => 'fas fa-fw fa-plus-circle',
-            //         'url'   =>  '/dashboard/produk/tambah',
-            //     ],
-            //     [
-            //         'text'  =>  'Tambah Kategori',
-            //         'icon_color' => 'cyan',
-            //         'icon' => 'fas fa-fw fa-plus-circle',
-            //         'url'   =>  '/dashboard/kategori',
-            //     ],
-            // ]
         ],
         [
             'text'  =>  'Kategori',

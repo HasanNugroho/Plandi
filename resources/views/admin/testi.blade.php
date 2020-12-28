@@ -2,8 +2,8 @@
 @section('title', 'Testimoni')
 @section('content_header')
 <div class="d-flex justify-content-between">
-    <h1>Testimoni</h1>
-    <button type="button" class="btn btn-md btn-success" data-bs-toggle="modal" data-bs-target="#modal-add">
+    <div class="text2">Testimoni</div>
+    <button type="button" class="text3 btn btn-md btn-success" data-bs-toggle="modal" data-bs-target="#modal-add">
         Tambah testimoni
     </button>
 </div>
@@ -122,7 +122,6 @@
         var output = document.getElementById('preview');
         var file = document.getElementById('labelimg').innerHTML = file.files[0].name
     };
-
 </script>
 <script>
         $('.btn-edit').on('click', function () {
@@ -154,8 +153,8 @@
             data: formData,
             success: function (data) {
                 // console.log(data)
-                $('#modal-edit').find('.modal-body').html(data)
-                $('#modal-edit').modal('hide')
+                $('#modal-edit-testi').find('.modal-body').html(data)
+                $('#modal-edit-testi').modal('hide')
                 window.location.assign('/dashboard/testimoni')
             },
             error: function (err) {

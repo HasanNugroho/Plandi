@@ -2,8 +2,8 @@
 @section('title', 'Kategori produk')
 @section('content_header')
 <div class="d-flex justify-content-between">
-    <h1>Kategori Produk</h1>
-    <button type="button" class="btn btn-md btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <div class="text2">Kategori Produk</div>
+    <button type="button" class="btn text3 btn-md btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Tambah Kategori
     </button>
 </div>

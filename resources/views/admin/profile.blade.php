@@ -3,7 +3,7 @@
 @section('title', 'Profile')
 
 @section('content_header')
-<h1>Profile</h1>
+<div class="text2">Profile</div>
 @stop
 
 @section('content')
@@ -55,13 +55,16 @@
     <div class="col-md-4">
         <div class="card">
             <div class="card-body text-center">
-                @if ($user->foto)
-                <img src="{{ Storage::url($user->foto)}}" style="width: 80%; height: auto;border-radius: 150px; padding:1rem;" alt="">
-                @else
-                <img src="/image/profile-default.png" style="width: 80%; height: auto; border-radius: 150px;padding:1rem;" alt="">
-                @endif
-                <div class="mb-3 mt-3">
-                    <input class="form-control" type="file" id="formFile" name="foto">
+                <div class="form-group">
+                    <div class="text-center">
+                        <img src="{{ Storage::url($user->foto)}}" alt="Image Preview" style="width: 80%; height: auto;border-radius: 150px; padding:1rem;"
+                            id="preview">
+                    </div>
+                    <div class="custom-file mt-3 text-left">
+                        <input id="foto" class="custom-file-input" type="file" name="foto"
+                            onchange="loadFile(event)">
+                        <label for="my-input" class="custom-file-label" style="overflow: hidden" id="labelimg">{{$user->foto}}</label>
+                    </div>
                 </div>
             </div>
         </div>
@@ -79,6 +82,19 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script>
     console.log('Hi!');
-
+</script>
+<script>
+    function loadFile(event){
+        //mengubah foto
+        var reader = new FileReader();
+        reader.readAsDataURL(event.target.files[0]);
+        reader.onload = function(){
+        output.src = reader.result;
+        }
+        //mengubah label
+        var file = document.getElementById('foto');
+        var output = document.getElementById('preview');
+        var file = document.getElementById('labelimg').innerHTML = file.files[0].name
+    };
 </script>
 @stop
