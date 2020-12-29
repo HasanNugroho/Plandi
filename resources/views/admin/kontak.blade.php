@@ -94,6 +94,7 @@
                 $('#modal-edit').find('.modal-body').html(data)
                 $('#modal-edit').modal('hide')
                 window.location.assign('/dashboard/contact')
+                Swal.fire('Success','Kontak berhasil diupdate','success')
             },
             error: function (err) {
                 console.log(err.responseJSON)

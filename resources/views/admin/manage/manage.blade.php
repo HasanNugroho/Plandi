@@ -34,7 +34,7 @@
                     <td>{{$u->role}}</td>
                     <td class="d-flex">
                         <a class="btn btn-warning btn-sm btn-edit" data-id="{{$u->id}}" href="#">Edit</a>
-                        <a class="btn btn-danger btn-sm btn-delete ml-2" data-id="{{$u->id}}" href="#">Hapus</a>
+                        <a class="btn btn-danger btn-sm btn-delete delete-confirm ml-2" data-id="{{$u->id}}" href="#">Hapus</a>
                     </td>
                 </tr>
                 @endforeach
@@ -176,6 +176,7 @@
                 $('#modal-edit').find('.modal-body').html(data)
                 $('#modal-edit').modal('hide')
                 window.location.assign('/dashboard/admin/manage')
+                Swal.fire('Success','User berhasil diupdate','success')
             },
             error: function (err) {
                 console.log(err.responseJSON)
@@ -198,6 +199,7 @@
             success: function (data) {
                 console.log(data)
                 window.location.assign('/dashboard/admin/manage')
+                Swal.fire('Success','User berhasil dihapus','success')
             },
             error: function (err) {
                 console.log(err.responseJSON)
@@ -205,6 +207,5 @@
 
         })
     })
-
 </script>
 @stop

@@ -59,7 +59,7 @@ class ProfileController extends Controller
 
         User::create($data);
 
-        session()->flash('message', "<script>swal('Success','New admin added','success')</script>");
+        session()->flash('message', "Swal.fire('Success','New admin added','success')");
         return redirect()->back();
     }
 
@@ -131,16 +131,16 @@ class ProfileController extends Controller
         if (request('password')) {
             if (Hash::check(request('old_password'), Auth::user()->password)) {
                 User::where('id', Auth::user()->id)->update($data);
-                session()->flash('message', "<script>swal('Success','Updated profil','success')</script>");
+                session()->flash('message', "Swal.fire('Success','Updated profil','success')");
                 return back();
             } else {
-                session()->flash('message', "<script>swal('Fail','Wrong password','error')</script>");
+                session()->flash('message', "Swal.fire('Fail','Wrong password','error')");
                 return back();
             }
         }else {
             User::where('id', Auth::user()->id)->update($data);
 
-            session()->flash('message', "<script>swal('Success','Updated profil','success')</script>");
+            session()->flash('message', "Swal.fire('Success','Updated profil','success')");
             return back();
         }
     }
@@ -171,16 +171,16 @@ class ProfileController extends Controller
         if ($request->password) {
             if (Hash::check(request('old_password'), $password->password)) {
                 User::where('id', $id)->update($data);
-                session()->flash('message', "<script>swal('Success','Updated profil','success')</script>");
+                session()->flash('message', "Swal.fire('Success','Updated profil','success')");
                 return back();
             } else {
-                session()->flash('message', "<script>swal('Fail','Wrong password','error')</script>");
+                session()->flash('message', "Swal.fire('Fail','Wrong password','error')");
                 return back();
             }
         }else {
             User::where('id', $id)->update($data);
 
-            session()->flash('message', "<script>swal('Success','Updated profil','success')</script>");
+            session()->flash('message', "Swal.fire('Success','Updated profil','success')");
             return back();
         }
     }

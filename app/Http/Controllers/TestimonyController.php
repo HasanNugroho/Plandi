@@ -34,7 +34,7 @@ class TestimonyController extends Controller
             'nama' => $request->nama,
             'komentar' => $request->komentar,
         ]);
-
+        session()->flash('message', "Swal.fire('Success','Testimoni berhasil ditambah','success')");
         return redirect()->back();
     }
     public function edit($id)

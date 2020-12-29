@@ -29,7 +29,7 @@
                 <td>{{$testi->nama}}</td>
                 <td>{{$testi->komentar}}</td>
                 <td><a class="btn btn-warning btn-sm btn-edit" data-id="{{$testi->id}}" href="#">Edit</a>
-                    <a class="btn btn-danger btn-sm btn-delete" data-id="{{$testi->id}}" href="#">Hapus</a> 
+                    <a class="btn btn-danger btn-sm btn-delete delete-confirm" data-id="{{$testi->id}}" href="#">Hapus</a> 
                 </td>
             </tr>
             @endforeach
@@ -156,6 +156,8 @@
                 $('#modal-edit-testi').find('.modal-body').html(data)
                 $('#modal-edit-testi').modal('hide')
                 window.location.assign('/dashboard/testimoni')
+                Swal.fire('Success','Testimoni berhasil diupdate','success')
+
             },
             error: function (err) {
                 console.log(err.responseJSON)
@@ -178,6 +180,7 @@
             success: function (data) {
                 console.log(data)
                 window.location.assign('/dashboard/testimoni')
+                Swal.fire('Success','Testimoni berhasil dihapus','success')
             },
             error: function (err) {
                 console.log(err.responseJSON)

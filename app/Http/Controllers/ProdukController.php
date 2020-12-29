@@ -67,12 +67,15 @@ class ProdukController extends Controller
             'panjang_tali' => 'required',
             'diskripsi' => 'required',
             'foto_utama' => 'required',
-            'foto' => 'required',
-            'foto.*' => 'required'
         ]);
         // dd($request);
 
-
+        if($request->hasfile('foto')){
+            $this->validate($request,[
+                'foto' => 'required',
+                'foto.*' => 'required'
+            ]);
+        }
         $data = [];
         if($request->hasfile('foto'))
         {
@@ -100,6 +103,7 @@ class ProdukController extends Controller
             'panjang_tali' => $request->panjang_tali,
             'diskripsi' => $request->diskripsi,
         ]);
+        session()->flash('message', "Swal.fire('Success','Produk berhasil ditambah','success')");
         return redirect('/dashboard/produk');
     }
     // 
@@ -113,7 +117,7 @@ class ProdukController extends Controller
             Storage::delete($hapus);
         }
         $delete->delete();
-
+        session()->flash('message', "Swal.fire('Success','Produk berhasil dihapus','success')");
         return redirect()->back();
     }
     // 
@@ -193,6 +197,7 @@ class ProdukController extends Controller
         $update['diskripsi'] = $request->diskripsi;
 
         produk::where('slug', $request->slug)->update($update);
+        session()->flash('message', "Swal.fire('Success','Produk berhasil diupdate','success')");
         return redirect('/dashboard/produk');
     }
 }

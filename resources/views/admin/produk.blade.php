@@ -33,7 +33,7 @@
           <td>Rp {{$p->harga}}</td>
           <td>
               <a href="{{route('edit.produk', $p->slug)}}" class="btn btn-sm btn-warning">Edit</a>
-              <a href="{{route('hapus.produk', $p->slug)}}" class="btn btn-sm btn-danger">Hapus</a>
+              <a href="{{route('hapus.produk', $p->slug)}}" class="btn btn-sm btn-danger delete-confirm">Hapus</a>
           </td>
         </tr>
       @endforeach
@@ -54,12 +54,12 @@
         <form class="row" action="{{route('tambah.produk')}}" method="POST" enctype="multipart/form-data">
           {{csrf_field()}}
           <div class="col-md-6 mb-2">
-              <label for="inputEmail4" class="form-label">Nama Barang</label>
-              <input type="text" name="nama_produk" class="form-control" id="inputEmail4" placeholder="pot">
+              <label for="barang" class="form-label">Nama Barang</label>
+              <input type="text" name="nama_produk" class="form-control" id="barang" placeholder="pot">
           </div>
           <div class="col-md-6 mb-2">
-              <label for="inputEmail4" class="form-label">Harga</label>
-              <input type="text" name="harga" class="form-control" id="inputEmail4" placeholder="50.000">
+              <label for="harga" class="form-label">Harga</label>
+              <input type="text" name="harga" class="form-control" id="harga" placeholder="50.000">
           </div>
           <div class="col-md-6 mb-2">
               <label for="bb" class="form-label">Berat barang</label>
@@ -83,7 +83,7 @@
           </div>
           <div class="col-md-6 mb-2">
               <label for="tali" class="form-label">Kategori</label>
-              <select class="form-select" aria-label="Default select example" name="kategori">
+              <select class="form-select" aria-label="Default select example" name="kategori" id="tali">
                   <option selected>Pilih kategori</option>
                   @foreach ($kategori as $kategori)
                       <option value="{{$kategori->kategori}}">{{$kategori->kategori}}</option>
@@ -91,15 +91,15 @@
                 </select>
           </div>
           <div class="col-md-6 mb-2">
-              <label for="tali" class="form-label">Foto Utama produk</label>
+              <label for="foto_utama" class="form-label">Foto Utama produk</label>
               <div class="input-group control-group">
-                  <input type="file" name="foto_utama" class="form-control">
+                  <input type="file" name="foto_utama" class="form-control" id="foto_utama">
               </div>
           </div>
           <div class="col-md-6 mb-2">
-              <label for="tali" class="form-label">Foto produk</label>
+              <label for="foto" class="form-label">Foto produk</label>
               <div class="input-group control-group increment">
-                  <input type="file" name="foto[]" class="form-control" multiple>
+                  <input type="file" name="foto[]" class="form-control" id="foto" multiple>
                   <div class="input-group-btn">
                       <button class="btn btn-success btn-tambah" type="button"><i
                               class="glyphicon glyphicon-plus"></i>Tambah</button>
@@ -109,7 +109,7 @@
           <div class="col-md-6 mb-2">
               <div class="clone visually-hidden">
                   <div class="control-group input-group" style="margin-top:10px">
-                      <input type="file" name="foto[]" class="form-control" multiple>
+                      <input type="file" name="foto[]" id="foto" class="form-control" multiple>
                       <div class="input-group-btn">
                           <button class="btn btn-danger btn-kurang" type="button"><i
                                   class="glyphicon glyphicon-remove"></i>
@@ -167,6 +167,8 @@
             $(this).parents(".control-group").remove();
         });
     });
-
 </script>
+{{-- <script>
+    Swal.fire('Success','Tambah produk','success')
+</script> --}}
 @stop

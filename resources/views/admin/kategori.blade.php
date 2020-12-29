@@ -22,7 +22,7 @@
             @foreach ($kategori as $k)
             <tr>
                 <td>{{$k->kategori}}</td>
-                <td><a class="btn btn-danger btn-sm" href="{{route('hapus.kategori',$k->id)}}">Hapus</a> </td>
+                <td><a class="btn btn-danger btn-sm delete-confirm" href="{{route('hapus.kategori',$k->id)}}">Hapus</a> </td>
             </tr>
             @endforeach
         </tbody>
