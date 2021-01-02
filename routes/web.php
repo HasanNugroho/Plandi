@@ -47,7 +47,7 @@ Route::group(['middleware' => ['auth', 'Superadmin'], 'prefix' => '/dashboard/ad
     Route::get('manage', [ProfileController::class, 'manage'])->name('admin.manage');
     Route::post('manage/store', [ProfileController::class, 'store'])->name('add.admin');
     Route::get('manage/{id}/edit', [ProfileController::class, 'edit'])->name('edit.admin');
-    Route::post('manage/{id}/update', [ProfileController::class, 'update2'])->name('update.admin');
+    Route::post('manage/update', [ProfileController::class, 'update2'])->name('update.admin');
     Route::get('manage/{id}/delete', [ProfileController::class, 'delete'])->name('delete.admin');
 
 });

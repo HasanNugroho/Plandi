@@ -26,9 +26,9 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($user as $u)
+                @foreach ($user as $no => $u)
                 <tr>
-                    <td>1</td>
+                    <td>{{$user->firstItem()+$no}}</td>
                     <td>{{$u->name}}</td>
                     <td>{{$u->email}}</td>
                     <td>{{$u->role}}</td>
@@ -164,19 +164,20 @@
     })
     $('.btn-update').on('click', function (e) {
         e.preventDefault();
-        let id = $('#form-edit').find('#id_data').val()
+        // let id = $('#form-edit').find('#id_data').val()
         let formData = $('#form-edit').serialize()
         // console.log(id)
         console.log(formData)
         $.ajax({
-            url: '/dashboard/admin/manage/' + id + '/update',
+            url: '/dashboard/admin/manage/update',
             method: "POST",
             data: formData,
             success: function (data) {
                 $('#modal-edit').find('.modal-body').html(data)
                 $('#modal-edit').modal('hide')
                 window.location.assign('/dashboard/admin/manage')
-                Swal.fire('Success','User berhasil diupdate','success')
+                {!!session()->get('message')!!}
+                // Swal.fire('Success','User berhasil diupdate','success')
             },
             error: function (err) {
                 console.log(err.responseJSON)

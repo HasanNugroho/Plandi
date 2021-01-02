@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class users extends Seeder
 {
@@ -20,9 +21,13 @@ class users extends Seeder
                 'name' => 'admin',
                 'email' => 'admin@admin.com',
                 'role' => 'superadmin',
-                'foto' => 'public/asset/profile.jpg',
+                'foto' => 'public/admins/profile1.jpg',
                 'password' => Hash::make('12345678'),
             ]
         ]);
+
+        Storage::deleteDirectory('public/admins');
+
+        Storage::copy('public/asset/profile-default.jpg', 'public/admins/profile1.jpg');
     }
 }

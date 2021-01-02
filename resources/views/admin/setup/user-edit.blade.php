@@ -12,8 +12,8 @@
 <div class="form-group">
     <label for="role">Role</label>
     <select class="form-select" aria-label="Pilih role" name="role">
-        <option value="superadmin" @if($data->role == 'superadmin') selected @endif>Superadmin</option>
         <option value="manager" @if($data->role == 'manager') selected @endif>Manager</option>
+        <option value="superadmin" @if($data->role == 'superadmin') selected @endif>Superadmin</option>
     </select>
 </div>
 <div class="form-group">

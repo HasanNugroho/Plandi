@@ -145,16 +145,24 @@ class ProfileController extends Controller
         }
     }
 
-    public function update2(Request $request, $id)
+    public function update2(Request $request)
     {
-        // dd($id);
+        // dd($request);
         $request->validate([
             'email' => 'required|email',
-            'name' => 'required'
+            'name' => 'required',
         ]);
 
         $data = [];
+        if($request->role){
+            $request->validate([
+                'role' => 'required'
+            ]);
 
+            $data = [
+                'role' => request('role'),
+            ];
+        }
         if($request->password){
             $request->validate([
                 'old_password' => 'required',
@@ -164,30 +172,30 @@ class ProfileController extends Controller
             $data = [
                 'email' => request('email'),
                 'name' => request('name'),
-                'password' => bcrypt(request('password')),
             ];
         }
-        $password = User::where('id', $id)->first();
+        $password = User::where('id', $request->id)->first();
         if ($request->password) {
             if (Hash::check(request('old_password'), $password->password)) {
-                User::where('id', $id)->update($data);
-                session()->flash('message', "Swal.fire('Success','Updated profil','success')");
-                return back();
+                $data = ['password' => bcrypt(request('password')),];
+                User::where('id', $request->id)->update($data);
+                // session()->flash('message', "Swal.fire('Success','Updated profil','success')");
+                return back()->with("Swal.fire('Success','Updated profil','success')");
             } else {
-                session()->flash('message', "Swal.fire('Fail','Wrong password','error')");
-                return back();
+                // session()->flash('message', "Swal.fire('Fail','Wrong password','error')");
+                return back()->with("Swal.fire('Fail','Wrong password','error')");
             }
         }else {
-            User::where('id', $id)->update($data);
+            User::where('id', $request->id)->update($data);
 
-            session()->flash('message', "Swal.fire('Success','Updated profil','success')");
-            return back();
+            // session()->flash('message', "Swal.fire('Success','Updated profil','success')");
+            return back()->with("Swal.fire('Success','Updated profil','success')");
         }
     }
 
     public function manage()
     {
-        $user = User::get();
+        $user = User::paginate(10);
         return view('admin.manage.manage', compact('user'));
     }
     /**

@@ -12,16 +12,19 @@
 {{-- Hero --}}
 <div class="hero">
     <div class="container">
-        <div class="row center-hero">
+        <div class="row align-items-center center-hero">
+            <div class="col-md-6 sembunyi">
+                <img class="img-hero-hidden" src="/image/hero.svg" alt="">
+            </div>
             <div class="col-md-6">
                 <p class="text1 text-white">Kini Hadir Pot Serabut Kelapa Ramah Lingkungan Hanya di <p
                         class="text1 mb-4" style="color: #5ECEB3">Plandis Group</p>
                 </p>
                 <p class="text5 mb-4 text-white">Banyak manfaat yang didapat dari serabut kelapa bagi tanaman karena
                     membantu perkembangan tanaman</p>
-                <a href="#" class="btn btn-lg btn-see-product bg-white text-primary text3">Lihat Produk</a>
+                <a href="#produk" class="btn btn-lg btn-see-product bg-white text-primary text3">Lihat Produk</a>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 tidak-sembunyi">
                 <img class="img-hero" src="/image/hero.svg" alt="">
             </div>
         </div>
@@ -29,18 +32,28 @@
 </div>
 {{-- end hero --}}
 {{-- Produk --}}
+<div id="produk" class=""></div>
 <div class="container">
     <div class="produk">
         <div class="kategori">
-            <div class="d-flex align-items-center">
-                <a href="/" class="btn btn-md text-medium text5 btn-kategori"
-                    style="@if(count($kategori) == 0) background-color: #ce985e50; @endif">Semua</a>
-                @foreach ($kategori as $kategori)
-                <form action="{{route('home_produk')}}" method="get">
-                    <input type="hidden" name="kategori" value="{{$kategori->kategori}}">
-                    <button href="" type="submit" class="btn btn-md text-medium text5 btn-kategori" style="@if($kategori->kategori) background-color: #ce985e50; @endif">{{$kategori->kategori}}</button>
-                </form>
-                @endforeach
+            <div class="col-md-7">
+                <div class="swiper-container swiper-kategori">
+                    <div class="swiper-wrapper">
+                        {{-- <div class="d-flex align-items-center"> --}}
+                            <div class="swiper-slide kategorii">
+                                <a href="/" class="btn btn-md text-medium text5 btn-kategori" style="@if ($keterangan == "semua") background-color: #ce985e50; @endif">Semua</a>
+                            </div>
+                            @foreach ($kategori as $kategori)
+                            <div class="swiper-slide">
+                                <form action="{{route('home_produk')}}" method="get" id="form-kategori">
+                                    <input type="hidden" name="kategori" value="{{$kategori->kategori}}">
+                                    <button type="submit" class="btn btn-md text-medium text5 btn-kategori" id="kategori" style="@if($keterangan == $kategori->kategori) background-color: #ce985e50; @endif">{{$kategori->kategori}}</button>
+                                </form>
+                            </div>
+                            @endforeach
+                        {{-- </div> --}}
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row katalog">
@@ -63,7 +76,8 @@
             @endforeach
             @else
                 <div class="text-center">
-                    <h5 class="text3 text-medium">Produk Belum Tersedia</h5>
+                    <img src="{{asset('image/barang-tak-tersedia.jpg')}}" style="width: 20%; height: auto;" alt="">
+                    <h5 class="text3 text-medium mb-5">Produk Belum Tersedia</h5>
                 </div>
             @endif
         </div>
@@ -77,7 +91,7 @@
 {{-- end produk --}}
 {{-- Testimony --}}
 <div class="testimoni">
-    <div class="container-sm text-center">
+    <div class="container text-center">
         <p class="text6 text-primary">Testimonials</p>
         <p class="text2 text-primary">Apa Kata Mereka?</p>
         <div class="swiper-container swiper-home">
@@ -104,6 +118,4 @@
         </div>
     </div>
 </div>
-{{-- Testimony end --}}
-
 @endsection

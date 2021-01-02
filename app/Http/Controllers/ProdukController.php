@@ -12,18 +12,6 @@ use App\Models\kategori;
 class ProdukController extends Controller
 {
     // 
-    // Menampilkan produk ke frontedn
-    // 
-    public function front()
-    {
-        // dd(request1::get('kategori'));
-        $produk = produk::all();
-        if(request1::get('kategori')){
-            $produk = produk::where('kategori', request1::get('kategori'))->get();
-        }
-        return $produk;
-    }
-    // 
     // Search
     // 
     public function search()
@@ -46,7 +34,7 @@ class ProdukController extends Controller
     public function index()
     {
         $kategori = kategori::all();
-        $produk = produk::get();
+        $produk = produk::paginate(10);
         return view('admin.produk', compact('produk', 'kategori'));
         // return json_encode(array('data'=>$userData));
     }
@@ -55,27 +43,46 @@ class ProdukController extends Controller
     // 
     public function store(Request $request)
     {
-        // dd($request);
-        $this->validate($request,[
+        // 
+        // validasi
+        // 
+        $data = [
             'nama_produk' => 'required',
             'harga' => 'required',
-            'kategori' => 'required',
-            'berat_barang' => 'required',
-            'berat_volume' => 'required',
-            'diameter_luar' => 'required',
-            'diameter_dalam' => 'required',
-            'panjang_tali' => 'required',
             'diskripsi' => 'required',
             'foto_utama' => 'required',
-        ]);
-        // dd($request);
-
-        if($request->hasfile('foto')){
-            $this->validate($request,[
-                'foto' => 'required',
-                'foto.*' => 'required'
-            ]);
+            'kategori' => 'required'
+        ];
+        // validasi berat_barang
+        if($request->berat_barang){
+            $data['berat_barang'] = 'required';
         }
+        // validasi berat_volume
+        if($request->berat_volume){
+            $data['berat_volume'] = 'required';
+        }
+        // validasi diameter_luar
+        if($request->diameter_luar){
+            $data['diameter_luar'] = 'required';
+        }
+        // validasi diameter_dalam
+        if($request->diameter_dalam){
+            $data['diameter_dalam'] = 'required';
+        }
+        // validasi panjang_tali
+        if($request->panjang_tali){
+            $data['panjang_tali'] = 'required';
+        }
+        // validasi foto
+        if($request->file('foto')){
+            $data['foto'] = 'required';
+            $data['foto.*'] = 'required';
+        }
+        $request->validate($data);
+        // 
+        // 
+        // 
+
         $data = [];
         if($request->hasfile('foto'))
         {
@@ -134,33 +141,52 @@ class ProdukController extends Controller
     // 
     public function update(Request $request)
     {
+        // dd($request);
+        // 
         // validasi
+        // 
         $data = [
             'nama_produk' => 'required',
             'harga' => 'required',
-            'berat_barang' => 'required',
-            'berat_volume' => 'required',
-            'diameter_luar' => 'required',
-            'diameter_dalam' => 'required',
-            'panjang_tali' => 'required',
             'diskripsi' => 'required',
         ];
-
-        // vlidasi kategori
+        // validasi kategori
         if($request->kategori){
             $data['kategori'] = 'required';
+        }
+        // validasi berat_barang
+        if($request->berat_barang){
+            $data['berat_barang'] = 'required';
+        }
+        // validasi berat_volume
+        if($request->berat_volume){
+            $data['berat_volume'] = 'required';
+        }
+        // validasi diameter_luar
+        if($request->diameter_luar){
+            $data['diameter_luar'] = 'required';
+        }
+        // validasi diameter_dalam
+        if($request->diameter_dalam){
+            $data['diameter_dalam'] = 'required';
+        }
+        // validasi panjang_tali
+        if($request->panjang_tali){
+            $data['panjang_tali'] = 'required';
         }
         // validasi foto
         if($request->file('foto')){
             $data['foto'] = 'required';
             $data['foto.*'] = 'required';
         }
-        // validasi foto utama
         if($request->file('foto_utama')){
             $data['foto_utama'] = 'required';
         }
-
         $request->validate($data);
+        // 
+        // 
+        // 
+
         // update kategori
         if($request->kategori){
             $update['kategori'] = $request->kategori;

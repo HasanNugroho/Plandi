@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\produk;
 use App\Models\contact;
 use App\Models\kategori;
+use Illuminate\Support\Facades\Request as request1;
 
 use Illuminate\Http\Request;
 
@@ -11,14 +12,20 @@ class FrontController extends Controller
 {
     public function index()
     {
-        $pc = new ProdukController;
+        $produk = produk::all();
+        $keterangan = "semua";
+        if(request1::get('kategori')){
+            $produk = produk::where('kategori', request1::get('kategori'))->get();
+            $keterangan = request1::get('kategori');
+        }
+        // dd($keterangan);
         $tc = new TestimonyController;
 
-        $produk = $pc->front();
         $testi = $tc->testimony();
         $kategori = kategori::all();
         $whatsapp = contact::where('jenis_kontak', 'whatsapp')->first();
-        return view('home', compact('produk', 'kategori', 'testi', 'whatsapp'));
+        return view('home', compact('produk', 'kategori', 'testi', 'whatsapp', 'keterangan'));
+        // return response(array($produk, $testi, $kategori, $whatsapp));
     }
     public function checkout($slug)
     {
@@ -27,8 +34,8 @@ class FrontController extends Controller
         $sms = contact::where('jenis_kontak', 'sms')->first();
         $telephone = contact::where('jenis_kontak', 'telephone')->first();
                 #update add one visitor to table
-        if (!session()->get('visitsNews-'.$slug)) {
-            session()->put('visitsNews-'.$slug, true);
+        if (!session()->get('Visit-produk'.$slug)) {
+            session()->put('Visit-produk'.$slug, true);
             $checkout->update([
                 'visitor' => $checkout->visitor + 1
             ]);

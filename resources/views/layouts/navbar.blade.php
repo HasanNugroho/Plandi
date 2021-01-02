@@ -9,24 +9,24 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link text-dark text5 active" aria-current="page" href="/">Beranda</a>
+                    <a class="nav-link anu text-dark text5 active" aria-current="page" href="/">Beranda</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-dark text5" href="#" id="navbarDropdown" role="button"
+                    <a class="nav-link anu dropdown-toggle text-dark text5" href="#" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         Produk
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item text-dark text5" href="#">Action</a></li>
-                        <li><a class="dropdown-item text-dark text5" href="#">Another action</a></li>
+                        <li><a class="dropdown-item anu text-dark text5" href="#">Action</a></li>
+                        <li><a class="dropdown-item anu text-dark text5" href="#">Another action</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark text5" href="#">Testimoni</a>
+                    <a class="nav-link text-dark anu text5" href="#">Testimoni</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark text5" href="#">Tentang Kami</a>
-                </li>
+                {{-- <li class="nav-item">
+                    <a class="nav-link text-dark anu text5" href="#">Tentang Kami</a>
+                </li> --}}
             </ul>
         </div>
         <div class="wrap">
@@ -44,3 +44,18 @@
 
     </div>
 </nav>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    $(document).ready(function () { 
+        $('.anu') 
+                .click(function (e) { 
+            $('.anu') 
+                .removeClass('active'); 
+            $(this).addClass('active'); 
+        }); 
+    }); 
+</script>

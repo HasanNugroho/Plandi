@@ -91,9 +91,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($produk as $p)
+                            @foreach ($produk as $no => $p)
                             <tr>
-                                <th scope="row">1</th>
+                                <th scope="row">{{$produk->firstItem()+$no}}</th>
                                 <td>
                                     <img src="{{ Storage::url($p->foto_utama)}}"
                                         style="width: 80px; height: 80px; margin: 0 .2rem;" alt="">

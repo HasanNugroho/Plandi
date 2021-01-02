@@ -42,11 +42,11 @@
                                     <div class="d-flex">
                                         <div class="col-md-6 mr-3">
                                             <p class="text-medium text6">Berat barang</p>
-                                            <p class="text3">{{$checkout->berat_barang}} gr</p>
+                                            <p class="text3">@if ($checkout->berat_barang == null) - @else {{$checkout->berat_barang}} @endif gr</p>
                                         </div>
                                         <div class="col-md-6">
                                             <p class="text-medium text6">Berat Volume</p>
-                                            <p class="text3">{{$checkout->berat_volume}} gr</p>
+                                            <p class="text3">@if ($checkout->berat_volume == null) - @else {{$checkout->berat_volume}} @endif gr</p>
                                         </div>
                                     </div>
                                 </div>
@@ -54,18 +54,18 @@
                                     <div class="d-flex">
                                         <div class="col-md-6 mr-3">
                                             <p class="text-medium text6">Diameter luar</p>
-                                            <p class="text3">{{$checkout->diameter_luar}} cm</p>
+                                            <p class="text3">@if ($checkout->diameter_luar == null) - @else {{$checkout->diameter_luar}} @endif cm</p>
                                         </div>
                                         <div class="col-md-6">
                                             <p class="text-medium text6">Diameter dalam</p>
-                                            <p class="text3">{{$checkout->diameter_dalam}} cm</p>
+                                            <p class="text3">@if ($checkout->diameter_dalam == null) - @else {{$checkout->diameter_dalam}} @endif cm</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col-md-6">
                                         <p class="text-medium text6">Panjang tali</p>
-                                        <p class="text3">{{$checkout->panjang_tali}} cm</p>
+                                        <p class="text3">@if ($checkout->panjang_tali == null) - @else {{$checkout->panjang_tali}} @endif cm</p>
                                     </div>
                                 </div>
                             </div>
@@ -74,20 +74,20 @@
                     <p class="text5">Info dan pemesanan hubungi kami melalui :</p>
                     <div class="row">
                         @if ($whatsapp)
-                        <div class="col-sm-3 col-5 mt-2 d-flex align-items-center">
-                        <a class="text-right btn btn-md text5 btn-whatsapp" target="_top" href="https://wa.me/{{$whatsapp->kontak}}?text=Nama%20%3A%0ANo.%20HP%20%3A%0AAlamat%20%3A%0APesanan%20%3A%20{{$checkout->nama_produk}}%0AJumlah%20%3A"><span class="iconify"
+                        <div class="col mt-2 d-flex align-items-center">
+                        <a class="text-right btn btn-md text5 btn-whatsapp d-flex" target="_top" href="https://wa.me/{{$whatsapp->kontak}}?text=Nama%20%3A%0ANo.%20HP%20%3A%0AAlamat%20%3A%0APesanan%20%3A%20{{$checkout->nama_produk}}%0AJumlah%20%3A"><span class="iconify"
                                     data-icon="bx:bxl-whatsapp" data-inline="false" data-width="23"
                                     data-height="23"></span>Whatsapp</a>
                         </div>
                         @endif
                         @if ($telephone)
-                        <div class="col-sm-3 col-7 mt-2 d-flex align-items-center">
-                            <a href="tel:+{{$telephone->kontak}}" target="_top" class="btn btn-md text5 btn-phone"><span class="iconify" data-icon="bi:telephone"
+                        <div class="col mt-2 d-flex align-items-center">
+                            <a href="tel:+{{$telephone->kontak}}" target="_top" class="btn d-flex btn-md text5 btn-phone"><span class="iconify" data-icon="bi:telephone"
                                     data-inline="false" data-width="23" data-height="23"></span>Telephone</a>
                         </div>
                         @endif
                         @if ($sms)
-                        <div class="col-sm-3 col-6 mt-2 d-flex align-items-center">
+                        <div class="col mt-2 d-flex align-items-center">
                             <a href="sms:+{{$sms->kontak}}?body=PESANANDA" target="_top" class="btn btn-md text5 btn-sms"><span class="iconify" data-icon="ic:outline-sms"
                                     data-inline="false" data-width="23" data-height="23"></span>SMS</a>
                         </div>

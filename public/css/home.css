@@ -4,6 +4,10 @@
     border-radius: 65px;
 }
 
+.aktif{
+    background-color: #ce985e50;
+}
+
 .whatsapp {
     bottom: 2rem;
     right: 2rem;
@@ -12,30 +16,39 @@
 }
 
 @media(max-width:720px) {
-    .hidden{
-        display: inline;
+    .tidak-sembunyi{
+        display: none;
     }
-    .not-hidden{
-        display: inline;
+    .sembunyi{
+        display: inline !important;
+    }
+    .produk{
+        margin: 5rem 0 !important;
     }
 }
 @media (max-width:575px) {
     .img-produk{
     height: 280px;
     }
+    .produk{
+        margin: 3rem 0 !important;
+    }
 }
 @media (max-width:415px) {
     .img-produk{
         height: 210px;
     }
+    .produk{
+        margin: 2rem 0 !important;
+    }
 }
 /* Swipper */
 .swiper-container {
-    width: 100%;
-    height: 100%;
-    padding: 0 3rem 4em 3rem;
+    /* width: 100%; */
+    /* height: 100%; */
+    /* padding: 0 3rem 4em 3rem; */
     margin-top: 4rem;
-    margin-bottom: 0rem;
+    /* margin-bottom: 0rem; */
   }
   .swiper-slide {
     text-align: center;
@@ -54,9 +67,36 @@
     align-items: center;
   }
 /* Swipper end */
+/* Kategori swiper */
+.swiper-kategori {
+    width: 100%;
+    height: 100%;
+  }
 
+  .kategorii {
+    text-align: center;
+    background: #fff;
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+  }
+/* Kategori swiper end */
 
 /* HERO */
+.sembunyi{
+    display: none;
+}
 .hero {
     background-color: #CE975E;
     height: 100vh;
@@ -83,6 +123,11 @@
 
 .img-hero {
     width: 80%;
+    height: auto;
+}
+.img-hero-hidden {
+    /* margin-top: 1rem; */
+    width: 50%;
     height: auto;
 }
 
