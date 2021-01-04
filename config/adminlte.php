@@ -274,6 +274,11 @@ return [
                     'icon'        => 'fas fa-fw fa-address-book',
                     'url'   =>  '/dashboard/contact',
                 ],
+                [
+                    'text'  =>  'Keyword SEO',
+                    'icon'        => 'fas fa-fw fa-globe',
+                    'url'   =>  '/dashboard/keyword',
+                ],
             ]
         ],
         ['header' => 'account_settings'],

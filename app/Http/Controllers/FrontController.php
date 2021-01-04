@@ -1,6 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+// seo
+use Artesaos\SEOTools\Facades\SEOTools;
+use Artesaos\SEOTools\Facades\SEOMeta;
+
 use App\Models\produk;
 use App\Models\contact;
 use App\Models\kategori;
@@ -12,6 +16,10 @@ class FrontController extends Controller
 {
     public function index()
     {
+        SEOTools::setDescription('Plandi itu anu');
+        SEOTools::opengraph()->setUrl('http://current.url.com');
+        SEOTools::setCanonical('https://codecasts.com.br/lesson');
+        SEOTools::opengraph()->addProperty('type', 'articles');
         $produk = produk::all();
         $keterangan = "semua";
         if(request1::get('kategori')){
@@ -34,11 +42,20 @@ class FrontController extends Controller
         $sms = contact::where('jenis_kontak', 'sms')->first();
         $telephone = contact::where('jenis_kontak', 'telephone')->first();
                 #update add one visitor to table
-        if (!session()->get('Visit-produk'.$slug)) {
-            session()->put('Visit-produk'.$slug, true);
+        if (!session()->get('produk'.$slug)) {
+            session()->put('produk'.$slug, true);
             $checkout->update([
                 'visitor' => $checkout->visitor + 1
             ]);
+        }
+
+        // SEO
+        if($checkout != null){
+        SEOMeta::setTitle($checkout->nama_produk);
+        SEOMeta::setDescription($checkout->diskripsi);
+        // SEOMeta::addMeta('article:published_time', $checkout->, 'property');
+        SEOMeta::addMeta('article:section', $checkout->kategori, 'property');
+        SEOMeta::addKeyword($checkout->keyword);
         }
 
         return view('checkout', compact('checkout', 'whatsapp', 'sms', 'telephone'));

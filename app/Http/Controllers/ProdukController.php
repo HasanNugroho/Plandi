@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Request as request1;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\produk;
+use App\Models\keyword;
 use App\Models\kategori;
 
 class ProdukController extends Controller
@@ -16,16 +17,21 @@ class ProdukController extends Controller
     // 
     public function search()
     {
-        $produk = produk::search(request1::get('search'))->get();
-        $key = request1::get('search');
-        $search_count = $produk->count();
-        $jenis = 'search_result';
-        $rekomendasi = produk::where('slug','!=',$produk[0]->slug)->latest()->limit(4)->get();
-        $count_rekomendasi = $rekomendasi->count();
-        if($produk->count() > 0){
-            return view('product', compact('produk', 'key', 'search_count', 'jenis', 'rekomendasi', 'count_rekomendasi'));
+        if(request1::get('search')){
+            $produk = produk::search(request1::get('search'))->get();
+            $key = request1::get('search');
+            $search_count = $produk->count();
+            $jenis = 'search_result';
+            $rekomendasi = produk::where('slug','!=',$produk[0]->slug)->latest()->limit(4)->get();
+            $count_rekomendasi = $rekomendasi->count();
+            if($produk->count() > 0){
+                return view('product', compact('produk', 'key', 'search_count', 'jenis', 'rekomendasi', 'count_rekomendasi'));
+            }else{
+                return back()->with(['danger' => 'Search Results for ' .$key. ' not available']);
+            }
         }else{
-            return back()->with(['danger' => 'Search Results for ' .$key. ' not available']);
+            return back();
+
         }
     }
     // 
@@ -33,9 +39,10 @@ class ProdukController extends Controller
     // 
     public function index()
     {
+        $keyword = keyword::all();
         $kategori = kategori::all();
         $produk = produk::paginate(10);
-        return view('admin.produk', compact('produk', 'kategori'));
+        return view('admin.produk', compact('produk', 'kategori', 'keyword'));
         // return json_encode(array('data'=>$userData));
     }
     // 
@@ -51,7 +58,9 @@ class ProdukController extends Controller
             'harga' => 'required',
             'diskripsi' => 'required',
             'foto_utama' => 'required',
-            'kategori' => 'required'
+            'kategori' => 'required',
+            'keyword' => 'required',
+            'keyword.*' => 'required'
         ];
         // validasi berat_barang
         if($request->berat_barang){
@@ -78,26 +87,39 @@ class ProdukController extends Controller
             $data['foto'] = 'required';
             $data['foto.*'] = 'required';
         }
-        $request->validate($data);
+        // $request->validate($data);
+        if (!$request->validate($data)) {
+            session()->flash('message', "Swal.fire('Success','Produk berhasil ditambah','success')");
+            return redirect('/dashboard/produk');
+        }
         // 
         // 
         // 
+
 
         $data = [];
         if($request->hasfile('foto'))
         {
             foreach($request->file('foto') as $image)
             {
-                $imgname = Storage::putFile('public/produk',  $image->path());
+                $imgname = Storage::putFile('public/produk', $image->path())->resize(200, 200);
                 $data[] = $imgname;  
+            }
+        }
+        if($request->keyword)
+        {
+            foreach($request->keyword as $key)
+            {
+                $key_data[] = $key;  
             }
         }
         if($request->hasfile('foto_utama'))
         {
-            $fotoutama = Storage::putFile('public/produk',  $request->foto_utama->path());
+            $fotoutama = Storage::putFile('public/produk',  $request->foto_utama->path())->resize(200, 200);
         }
-        produk::create([
+        $input = [
             'foto' => json_encode($data),
+            'keyword' => json_encode($key_data),
             'nama_produk' => $request->nama_produk,
             'slug' => Str::slug($request->nama_produk),
             'foto_utama' => $fotoutama,
@@ -109,16 +131,22 @@ class ProdukController extends Controller
             'diameter_dalam' => $request->diameter_dalam,
             'panjang_tali' => $request->panjang_tali,
             'diskripsi' => $request->diskripsi,
-        ]);
-        session()->flash('message', "Swal.fire('Success','Produk berhasil ditambah','success')");
-        return redirect('/dashboard/produk');
+        ];
+        if (produk::create($input)) {
+            session()->flash('message', "Swal.fire('Success','Produk berhasil ditambah','success')");
+            return redirect('/dashboard/produk');
+        }else{
+            session()->flash('message', "Swal.fire('Error','Produk gagal ditambahkan','error')");
+            return redirect('/dashboard/produk');
+        }
+        
     }
     // 
     // delete 
     // 
-    public function delete($slug)
+    public function delete($id)
     {
-        $delete = produk::where('slug', $slug)->first();
+        $delete = produk::where('id', $id)->first();
         Storage::delete($delete->foto_utama);
         foreach(json_decode($delete->foto) as $hapus){
             Storage::delete($hapus);
@@ -130,11 +158,12 @@ class ProdukController extends Controller
     // 
     // Edit data
     // 
-    public function edit($slug)
+    public function edit($id)
     {
-        $edit = produk::where('slug', $slug)->first();
+        $edit = produk::where('id', $id)->first();
         $kategori = kategori::all();
-        return view('admin.edit-produk', compact('edit', 'kategori'));
+        $keyword = keyword::all();
+        return view('admin.edit-produk', compact('edit', 'kategori', 'keyword'));
     }
     // 
     // update
@@ -149,6 +178,8 @@ class ProdukController extends Controller
             'nama_produk' => 'required',
             'harga' => 'required',
             'diskripsi' => 'required',
+            'keyword' => 'required',
+            'keyword.*' => 'required',
         ];
         // validasi kategori
         if($request->kategori){
@@ -192,7 +223,7 @@ class ProdukController extends Controller
             $update['kategori'] = $request->kategori;
         }
         // update foto utama
-        $targetItem = produk::where('slug', $request->slug)->first();
+        $targetItem = produk::where('id', $request->id)->first();
         if($request->hasfile('foto_utama')){
             Storage::delete($targetItem->foto_utama);
 
@@ -213,8 +244,16 @@ class ProdukController extends Controller
                 }
             }
         }
-
+        if($request->keyword)
+        {
+            foreach($request->keyword as $key)
+            {
+                $key_data[] = $key;  
+                $update['keyword'] =json_encode($key_data);
+            }
+        }
         $update['nama_produk'] = $request->nama_produk;
+        $update['slug'] = Str::slug($request->nama_produk);
         $update['harga'] = $request->harga;
         $update['berat_barang'] = $request->berat_barang;
         $update['berat_volume'] = $request->berat_volume;
@@ -222,7 +261,7 @@ class ProdukController extends Controller
         $update['diameter_dalam'] = $request->diameter_dalam;
         $update['diskripsi'] = $request->diskripsi;
 
-        produk::where('slug', $request->slug)->update($update);
+        produk::where('id', $request->id)->update($update);
         session()->flash('message', "Swal.fire('Success','Produk berhasil diupdate','success')");
         return redirect('/dashboard/produk');
     }

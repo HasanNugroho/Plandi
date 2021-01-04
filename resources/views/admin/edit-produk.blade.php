@@ -63,15 +63,26 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-12">
-            <div class="clone visually-hidden">
-                <div class="control-group input-group" style="margin-top:10px">
-                    <input type="file" name="foto[]" value="{{$edit->foto}}" class="form-control" multiple>
-                    <div class="input-group-btn">
-                        <button class="btn btn-danger btn-kurang" type="button"><i
-                                class="glyphicon glyphicon-remove"></i>
-                            Hapus</button>
-                    </div>
+        <div class="clone visually-hidden">
+            <div class="control-group input-group" style="margin-top:10px">
+                <input type="file" name="foto[]" value="{{$edit->foto}}" class="form-control" multiple>
+                <div class="input-group-btn">
+                    <button class="btn btn-danger btn-kurang" type="button"><i
+                            class="glyphicon glyphicon-remove"></i>
+                        Hapus</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 mb-2">
+            <div class="form-group">
+                <label for="keyword" class="form-label">Keyword SEO</label>
+                <div class="input-group">
+                    @foreach ($keyword as $k)
+                        <div class="form-check form-check-inline d-flex">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="keyword[]" value="{{$k->keyword}}" multiple <?php foreach (json_decode($edit->keyword) as $keyword) {  ?> @if($keyword == $k->keyword) checked @endif <?php } ?>>
+                            <label class="form-check-label" for="inlineCheckbox1">{{$k->keyword}}</label>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>

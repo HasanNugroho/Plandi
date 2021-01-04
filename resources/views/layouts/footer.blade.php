@@ -20,10 +20,7 @@
                         <br>Telpon : +62 8954 2190 0858
                     </p>
                     <p class="text3 text-white mb-3">Alamat</p>
-                    <p class="text6 text-primary-white mb-3">PT. Dua Empat Tujuh Segitiga Emas Business Park Jl. Prof.
-                        Dr. Satrio KAV 6
-                        Jakarta Selatan - 12940
-                        INDONESIA
+                    <p class="text6 text-primary-white mb-3">Sonoharjo, margokaton, Seyegan, Sleman, Yogyakarta.
                     </p>
                 </div>
                 <div class="col-md-4">

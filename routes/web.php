@@ -24,7 +24,7 @@ use App\Http\Controllers\kategoriController;
 // Home Route
 Route::group(['middleware' => ['VisitorCount'], 'prefix' => '/'], function() {
     Route::get('', [FrontController::class, 'index'])->name('home_produk');
-    Route::get('checkout/{slug}', [FrontController::class, 'checkout'])->name('checkout');
+    Route::get('produk/{slug}', [FrontController::class, 'checkout'])->name('checkout');
     Route::get('produk', [FrontController::class, 'produk'])->name('produk.front');
     Route::get('search', [ProdukController::class, 'search'])->name('search');
 });
@@ -65,9 +65,9 @@ Route::group(['middleware' => ['auth'], 'prefix' => '/dashboard/produk'], functi
     Route::get('/tambah', [ProdukController::class, 'tambah']);
     Route::post('/tambah/store', [ProdukController::class, 'store'])->name('tambah.produk');
     // hapus data
-    Route::get('/delete/{slug}', [ProdukController::class, 'delete'])->name('hapus.produk');
+    Route::get('/delete/{id}', [ProdukController::class, 'delete'])->name('hapus.produk');
     // Edit data
-    Route::get('/edit/{slug}', [ProdukController::class, 'edit'])->name('edit.produk');
+    Route::get('/edit/{id}', [ProdukController::class, 'edit'])->name('edit.produk');
     Route::post('/edit/update', [ProdukController::class, 'update'])->name('update.produk');
 });
 
@@ -77,6 +77,14 @@ Route::group(['middleware' => ['auth'], 'prefix' => '/dashboard/kategori'], func
     // route::get('/', [kategoriController::class, 'show'])->name('show.kategori');
     route::post('/store', [kategoriController::class, 'store'])->name('add.kategori');
     route::get('/delete/{id}', [kategoriController::class, 'delete'])->name('hapus.kategori');
+});
+
+// keyword //
+Route::group(['middleware' => ['auth'], 'prefix' => '/dashboard/keyword'], function () {
+    route::get('/', [ManageController::class, 'index'])->name('keyword');
+    // route::get('/', [kategoriController::class, 'show'])->name('show.kategori');
+    route::post('/store', [ManageController::class, 'store'])->name('add.keyword');
+    route::get('/delete/{id}', [ManageController::class, 'delete'])->name('hapus.keyword');
 });
 
 // Kontak //

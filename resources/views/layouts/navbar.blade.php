@@ -1,3 +1,7 @@
+<?php
+use App\Models\kategori;
+$kategori = kategori::all();
+?>
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
     <div class="container">
         <a class="navbar-brand text-primary d-flex align-items-center" style="font-weight: 600; font-size: 16px;"
@@ -17,12 +21,18 @@
                         Produk
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item anu text-dark text5" href="#">Action</a></li>
-                        <li><a class="dropdown-item anu text-dark text5" href="#">Another action</a></li>
+                        @foreach ($kategori as $kategori)
+                            <form action="{{route('home_produk')}}" method="get" id="form-kategori">
+                                <li>
+                                    <input type="hidden" name="kategori" value="{{$kategori->kategori}}">
+                                    <button type="submit" class="dropdown-item anu text-dark text5" id="kategori">{{$kategori->kategori}}</button>
+                                </li>
+                            </form>
+                        @endforeach
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark anu text5" href="#">Testimoni</a>
+                    <a class="nav-link text-dark anu text5" href="#testi">Testimoni</a>
                 </li>
                 {{-- <li class="nav-item">
                     <a class="nav-link text-dark anu text5" href="#">Tentang Kami</a>

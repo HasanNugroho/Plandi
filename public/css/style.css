@@ -4,9 +4,9 @@ body {
     background-color: #FFFFFF !important;
 }
 
-.active{
+/* .active{
     color: #BD7E4A !important;
-}
+} */
 
 .dropdown-item.active,
 .dropdown-item:active{

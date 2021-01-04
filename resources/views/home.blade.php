@@ -90,7 +90,7 @@
 </div>
 {{-- end produk --}}
 {{-- Testimony --}}
-<div class="testimoni">
+{{-- <div class="testimoni" id="testi">
     <div class="container text-center">
         <p class="text6 text-primary">Testimonials</p>
         <p class="text2 text-primary">Apa Kata Mereka?</p>
@@ -117,5 +117,5 @@
             <div class="swiper-button-prev"></div>
         </div>
     </div>
-</div>
+</div> --}}
 @endsection

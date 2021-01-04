@@ -17,6 +17,7 @@ class CreateProduksTable extends Migration
             $table->id();
             $table->text('foto')->nullable();
             $table->text('foto_utama');
+            $table->text('keyword');
             $table->string('nama_produk');
             $table->string('slug');
             $table->string('visitor')->default(0);

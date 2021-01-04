@@ -2,9 +2,15 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {{-- <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords"
+        content="Pot, tanaman, kerajinan, ">
+    <meta name="description"
+        content="AdminWrap Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
+    <meta name="robots" content="noindex,nofollow"> --}}
+
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('swipper/css/swiper-bundle.css')}}">
     {{-- <link rel="stylesheet" href="swipper/css/swiper-bundle.min.css"> --}}
@@ -13,7 +19,7 @@
     {{-- CSS TAMBAHAN --}}
 
     @yield('css-custom')
-    <title>@yield('title')</title>
+    {!! SEO::generate() !!}
 </head>
 
 <body>
