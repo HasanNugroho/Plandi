@@ -102,7 +102,7 @@ class ProdukController extends Controller
         {
             foreach($request->file('foto') as $image)
             {
-                $imgname = Storage::putFile('public/produk', $image->path())->resize(200, 200);
+                $imgname = Storage::putFile('public/produk', $image->path());
                 $data[] = $imgname;  
             }
         }
@@ -115,7 +115,7 @@ class ProdukController extends Controller
         }
         if($request->hasfile('foto_utama'))
         {
-            $fotoutama = Storage::putFile('public/produk',  $request->foto_utama->path())->resize(200, 200);
+            $fotoutama = Storage::putFile('public/produk',  $request->foto_utama->path());
         }
         $input = [
             'foto' => json_encode($data),
